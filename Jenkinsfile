@@ -6,7 +6,7 @@ pipeline {
      )
 	}
  environment{
-  SCANNER_HOME=tool 'SonarScaner'
+  SCANNER_HOME=tool 'SonarScanner'
  }
   stages{
    stage('Checkout'){
