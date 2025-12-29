@@ -27,6 +27,28 @@ pipeline {
 	   currentBuild.result = 'Failed'
 	  }
 	 }
+	 stage('Build docker image'){
+      steps{
+	   script{
+	    try{
+		 sh 'docker build -t blogging:latest'
+		}
+		catch(Expression e){
+		 currentBuild.result: 'Failed'
+		}
+	   }
+	  }
+     }
+    post{
+	 always{
+	  cleanWs()
+	 }
+	}
+	 failure{
+	  mail to: 'walunjpallavi69@gmail.com',
+	        subject: 'Build Failed',
+			body: 'Check jenkins console logs'
+	 }
 	  
 	}
    }
