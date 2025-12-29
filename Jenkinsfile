@@ -5,6 +5,9 @@ pipeline {
     name: 'ENV', choices: ['Dev', 'QA', 'PROD'], description: 'Select environment'
      )
 	}
+ environment{
+  SCANNER_HOME=tool 'SonarScaner'
+ }
   stages{
    stage('Checkout'){
     steps{
