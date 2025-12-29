@@ -5,6 +5,9 @@ pipeline {
     name: 'ENV', choices: ['Dev', 'QA', 'PROD'], description: 'Select environment'
      )
 	}
+ environment{
+  SCANNER_HOME=tool 'SonarScanner'
+ }
   stages{
    stage('Checkout'){
     steps{
@@ -28,6 +31,16 @@ pipeline {
 	 }
 	 }
 	 }
+	 stage("Sonarqube Analysis"){
+            steps{
+                withSonarQubeEnv('SonarQube') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=BankApp \
+                    -Dsonar.java.binaries=. \
+                    -Dsonar.projectKey=BankApp '''
+    
+                }
+            }
+        }
 	 stage('Build docker image'){
       steps{
 	   script{
