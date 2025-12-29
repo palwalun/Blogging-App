@@ -16,6 +16,20 @@ pipeline {
 	  sh 'mvn clean package'
 	}
    }
+   stage('Test'){
+    steps{
+	 script{
+	  try{
+	   sh 'mvn clean test'
+	  }
+	  catch(Exception e){
+	   echo "Logs of failure: ${e}"
+	   currentBuild.result = 'Failed'
+	  }
+	 }
+	  
+	}
+   }
   
   
   
