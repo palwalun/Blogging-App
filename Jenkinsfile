@@ -2,10 +2,10 @@ pipeline{
  agent any
  
  stages{
-  stage(Checkout){
+  stage('Checkout'){
    steps{checkout scm}
   }
-  stage(Build){
+  stage('Build'){
    steps{
    sh 'mvn clean package'
    }
