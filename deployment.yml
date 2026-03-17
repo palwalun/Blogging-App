@@ -1,7 +1,7 @@
 apiVresion: apps/v1
 kind: Deployment
 metadata:
- name: boardgame-deployment
+ name: blogging-app-deployment
  labels:
   app: game
 spec:
@@ -11,12 +11,12 @@ spec:
    app: game
  template:
   metadata:
-   name: boardgame-pod
+   name: blogging-app-pod
    labels:
     app: game
   spec:
    containers:
-    - name: boardgame-containers
-      image: boardgame
+    - name: blogging-app-containers
+      image: blogging-app
       ports:
        - containerPort: 8080
