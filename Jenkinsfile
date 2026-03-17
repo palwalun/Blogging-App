@@ -1,7 +1,7 @@
 pipeline{
  agent any
  environment {
-		ACR_LOGIN_SERVER = "devopsproject2.azurecr.io"
+		ACR_LOGIN_SERVER = "devopsproject1.azurecr.io"
 		IMAGE_NAME = 'boardgame'
 		TAG = 'latest'
     }
@@ -51,9 +51,19 @@ pipeline{
 	      sh 'docker push $ACR_LOGIN_SERVER/${IMAGE_NAME}:${TAG}'
 	    }
 	   }
+  stage('Build Docker Image'){
+   steps{
+   sh 'Kubectl apply -f deployment.yml'
+   }
+  }
  
  
  }
+post{
+ always{
+  cleanWs()
+ }
 
+}
 
 }
