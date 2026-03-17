@@ -51,11 +51,6 @@ pipeline{
 	      sh 'docker push $ACR_LOGIN_SERVER/${IMAGE_NAME}:${TAG}'
 	    }
 	   }
-  stage('Build Docker Image'){
-   steps{
-   sh 'Kubectl apply -f deployment.yml'
-   }
-  }
  
  
  }
