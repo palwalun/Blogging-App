@@ -1,0 +1,22 @@
+apiVresion: apps/v1
+kind: Deployment
+metadata:
+ name: boardgame-deployment
+ labels:
+  app: game
+spec:
+ replicas: 2
+ selector:
+  matchLabels:
+   app: game
+ template:
+  metadata:
+   name: boardgame-pod
+   labels:
+    app: game
+  spec:
+   containers:
+    - name: boardgame-containers
+      image: boardgame
+      ports:
+       - containerPort: 8080
